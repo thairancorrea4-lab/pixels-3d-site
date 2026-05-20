@@ -31,9 +31,9 @@ const produtosCriados = [
     nome: 'Suporte para Celular',
     descricao: 'Suporte prático para mesa, estudo, trabalho ou uso diário.',
     imagens: [
-    '/produtos/Porta-celular1.png',
-    '/produtos/Porta-celular2.png',
-    '/produtos/Porta-celular3.png',
+    '/produtos/Suporte-celular1.png',
+    '/produtos/Suporte-celular2.png',
+    '/produtos/Suporte-celular3.png',
   ],
   },
   {
