@@ -310,7 +310,7 @@ function App() {
 
       <footer className="footer">
         <div className="container footer-content">
-          <p>© 2026 Pixel&apos;s 3D. Todos os direitos reservados.</p>
+          <p>© 2024 Pixel&apos;s 3D. Todos os direitos reservados.</p>
           <p>Peças personalizadas • PLA • Orçamento pelo WhatsApp</p>
         </div>
       </footer>
