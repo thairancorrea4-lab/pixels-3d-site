@@ -90,7 +90,7 @@ function App() {
               </a>
 
               <a className="btn secondary" href="#produtos-prontos">
-                Ver produtos prontos
+                Ver Modelos disponíveis
               </a>
             </div>
 
@@ -166,7 +166,7 @@ function App() {
         <div className="container split">
           <div>
             <span className="label-dark">O que podemos fazer</span>
-            <h2>De produtos prontos a peças sob medida.</h2>
+            <h2>De Modelos disponíveis a peças sob medida.</h2>
             <p>
               Atendemos pedidos personalizados para quem precisa de uma peça específica, um suporte diferente, um organizador funcional ou um protótipo para testar uma ideia.
             </p>
@@ -186,11 +186,11 @@ function App() {
         </div>
       </section>
 
-      {/* PRODUTOS PRONTOS */}
+      {/* Modelos disponíveis */}
       <section id="produtos-prontos" className="section dark-section">
         <div className="container">
           <div className="section-heading">
-            <span>Produtos prontos</span>
+            <span>Modelos disponíveis</span>
             <h2>Produtos que já temos criados na Pixel&apos;s 3D.</h2>
           </div>
 
