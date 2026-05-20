@@ -176,7 +176,7 @@ function App() {
           <div className="hero-text">
             <span className="tag">Pixel&apos;s 3D • Impressão 3D</span>
 
-            <h1>Transformamos sua ideia em.</h1>
+            <h1>Transformando sua ideia em realidade.</h1>
 
             <p>
               Criamos peças impressas em 3D para organização, decoração, suporte,
