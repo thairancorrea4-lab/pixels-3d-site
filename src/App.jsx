@@ -1,5 +1,6 @@
 const WHATSAPP_NUMBER = '5547992805184';
-const WHATSAPP_TEXT = "Olá! Vim pelo site da Pixel's 3D e quero fazer um orçamento de impressão 3D.";
+const WHATSAPP_TEXT =
+  "Olá! Vim pelo site da Pixel's 3D e quero fazer um orçamento de impressão 3D.";
 
 const produtos = [
   'Suporte para celular',
@@ -13,19 +14,30 @@ const produtos = [
 const produtosCriados = [
   {
     nome: 'Porta Canetas',
-    descricao: 'Organizador de mesa feito em impressão 3D, ideal para canetas, lápis e pequenos acessórios.',
+    descricao:
+      'Organizador de mesa feito em impressão 3D, ideal para canetas, lápis e pequenos acessórios.',
+    imagens: [
+      '/produtos/Porta-canetas1.png.jpeg',
+      '/produtos/Porta-canetas2.png.jpeg',
+      '/produtos/Porta-canetas3.png.jpeg',
+      '/produtos/Porta-canetas4.png.jpeg',
+      '/produtos/Porta-canetas5.png.jpeg',
+    ],
   },
   {
     nome: 'Suporte para Celular',
     descricao: 'Suporte prático para mesa, estudo, trabalho ou uso diário.',
+    imagens: [],
   },
   {
     nome: 'Suporte para Headset',
     descricao: 'Suporte funcional para organizar headset, fones e acessórios.',
+    imagens: [],
   },
   {
     nome: 'Peças Personalizadas',
     descricao: 'Produtos feitos sob encomenda conforme a ideia ou necessidade do cliente.',
+    imagens: [],
   },
 ];
 
@@ -60,7 +72,9 @@ const etapas = [
 ];
 
 function App() {
-  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_TEXT)}`;
+  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+    WHATSAPP_TEXT
+  )}`;
 
   const produtoWhatsappUrl = (produto) =>
     `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
@@ -76,12 +90,15 @@ function App() {
 
         <div className="container hero-content">
           <div className="hero-text fade-up">
-            <div className="badge">🖨️ Pixel&apos;s 3D • Impressão 3D sob encomenda</div>
+            <div className="badge">
+              🖨️ Pixel&apos;s 3D • Impressão 3D sob encomenda
+            </div>
 
             <h1>Pixel&apos;s 3D transforma sua ideia em peça real.</h1>
 
             <p className="subtitle">
-              Criamos peças impressas em 3D para organização, decoração, suporte, protótipos e soluções personalizadas para o seu dia a dia.
+              Criamos peças impressas em 3D para organização, decoração, suporte,
+              protótipos e soluções personalizadas para o seu dia a dia.
             </p>
 
             <div className="hero-actions">
@@ -90,7 +107,7 @@ function App() {
               </a>
 
               <a className="btn secondary" href="#produtos-prontos">
-                Ver Modelos disponíveis
+                Ver modelos disponíveis
               </a>
             </div>
 
@@ -166,9 +183,11 @@ function App() {
         <div className="container split">
           <div>
             <span className="label-dark">O que podemos fazer</span>
-            <h2>De Modelos disponíveis a peças sob medida.</h2>
+            <h2>De modelos disponíveis a peças sob medida.</h2>
             <p>
-              Atendemos pedidos personalizados para quem precisa de uma peça específica, um suporte diferente, um organizador funcional ou um protótipo para testar uma ideia.
+              Atendemos pedidos personalizados para quem precisa de uma peça específica,
+              um suporte diferente, um organizador funcional ou um protótipo para testar
+              uma ideia.
             </p>
             <a className="btn black" href={whatsappUrl} target="_blank" rel="noreferrer">
               Enviar minha ideia 💬
@@ -186,7 +205,7 @@ function App() {
         </div>
       </section>
 
-      {/* Modelos disponíveis */}
+      {/* MODELOS DISPONÍVEIS */}
       <section id="produtos-prontos" className="section dark-section">
         <div className="container">
           <div className="section-heading">
@@ -196,8 +215,25 @@ function App() {
 
           <div className="cards four">
             {produtosCriados.map((produto) => (
-              <article className="benefit-card" key={produto.nome}>
-                <div className="icon">🧩</div>
+              <article className="benefit-card produto-card-detalhado" key={produto.nome}>
+                {produto.imagens && produto.imagens.length > 0 ? (
+                  <div className="produto-galeria">
+                    <img
+                      className="produto-img"
+                      src={produto.imagens[0]}
+                      alt={produto.nome}
+                    />
+
+                    <div className="produto-miniaturas">
+                      {produto.imagens.slice(1, 4).map((imagem) => (
+                        <img key={imagem} src={imagem} alt={produto.nome} />
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="icon">🧩</div>
+                )}
+
                 <h3>{produto.nome}</h3>
                 <p>{produto.descricao}</p>
 
@@ -241,7 +277,8 @@ function App() {
           <div className="cta-box">
             <h2>Tem uma ideia? A gente imprime.</h2>
             <p>
-              Chame no WhatsApp, envie uma foto, desenho ou referência e receba um orçamento para transformar sua ideia em produto.
+              Chame no WhatsApp, envie uma foto, desenho ou referência e receba um
+              orçamento para transformar sua ideia em produto.
             </p>
             <a className="btn primary" href={whatsappUrl} target="_blank" rel="noreferrer">
               Pedir orçamento <span>→</span>
