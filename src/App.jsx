@@ -39,12 +39,18 @@ const produtosCriados = [
   {
     nome: 'Suporte para Headset',
     descricao: 'Suporte funcional para organizar headset, fones e acessórios.',
-    imagens: [],
+    imagens: [
+      '/produtos/Suporte-headset1.png.png',
+      '/produtos/Suporte-headset2.png.png',
+    ],
   },
   {
     nome: 'Peças Personalizadas',
     descricao: 'Produtos feitos sob encomenda conforme a ideia ou necessidade do cliente.',
-    imagens: [],
+    imagens: [
+      '/produtos/Produtos-personalizados1.png.png',
+      
+    ],
   },
 ];
 
