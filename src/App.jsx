@@ -1,4 +1,4 @@
-const WHATSAPP_NUMBER = '5547999999999'; // Troque pelo seu número com DDD. Ex: 5547991234567
+const WHATSAPP_NUMBER = '5547992805184'; 
 const WHATSAPP_TEXT = "Olá! Vim pelo site da Pixel's 3D e quero fazer um orçamento de impressão 3D.";
 
 const produtos = [
