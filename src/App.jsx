@@ -10,7 +10,7 @@ const produtos = [
   'Porta canetas',
   'Organizadores',
   'Peças sob encomenda',
-  'Suportes personalizados',
+  'Peças personalizadas',
   'Brindes e protótipos',
 ];
 
@@ -18,7 +18,7 @@ const produtosCriados = [
   {
     nome: 'Porta Canetas',
     descricao:
-      'Organizador de mesa feito em impressão 3D, ideal para canetas, lápis e pequenos acessórios.',
+      'Suporte para canetas feito em impressão 3D, ideal para canetas, lápis.',
     imagens: [
       '/produtos/Porta-canetas1.png.jpeg',
       '/produtos/Porta-canetas2.png.jpeg',
@@ -177,7 +177,7 @@ function App() {
           <div className="hero-text">
             <span className="tag">Pixel&apos;s 3D • Impressão 3D</span>
 
-            <h1>Transformamos sua ideia em peça real.</h1>
+            <h1>Transformamos sua ideia em.</h1>
 
             <p>
               Criamos peças impressas em 3D para organização, decoração, suporte,
@@ -236,8 +236,7 @@ function App() {
             <h2>De modelos disponíveis a peças sob medida.</h2>
             <p>
               Atendemos pedidos personalizados para quem precisa de uma peça específica,
-              um suporte diferente, um organizador funcional ou um protótipo para testar
-              uma ideia.
+              um suporte diferente, um organizador funcional, qualquer ideia que seja modelável.
             </p>
 
             <a className="button button-black" href={whatsappUrl} target="_blank" rel="noreferrer">
@@ -260,7 +259,7 @@ function App() {
         <div className="container">
           <div className="section-title">
             <span>Modelos disponíveis</span>
-            <h2>Produtos que já temos criados na Pixel&apos;s 3D.</h2>
+            <h2>Produtos que já foram criados pela Pixel&apos;s 3D.</h2>
           </div>
 
           <div className="catalog-grid">
