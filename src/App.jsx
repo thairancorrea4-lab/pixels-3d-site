@@ -294,7 +294,7 @@ function App() {
       <section className="section cta">
         <div className="container">
           <div className="cta-box">
-            <h2>Tem uma ideia? A gente imprime.</h2>
+            <h2>Tem uma ideia? A gente faz virar realidade.</h2>
             <p>
               Chame no WhatsApp, envie uma foto, desenho ou referência e receba um
               orçamento para transformar sua ideia em produto.
