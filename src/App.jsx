@@ -1,4 +1,4 @@
-const WHATSAPP_NUMBER = '5547992805184'; 
+const WHATSAPP_NUMBER = '5547992805184';
 const WHATSAPP_TEXT = "Olá! Vim pelo site da Pixel's 3D e quero fazer um orçamento de impressão 3D.";
 
 const produtos = [
@@ -8,6 +8,25 @@ const produtos = [
   'Peças sob encomenda',
   'Suportes personalizados',
   'Brindes e protótipos',
+];
+
+const produtosCriados = [
+  {
+    nome: 'Porta Canetas',
+    descricao: 'Organizador de mesa feito em impressão 3D, ideal para canetas, lápis e pequenos acessórios.',
+  },
+  {
+    nome: 'Suporte para Celular',
+    descricao: 'Suporte prático para mesa, estudo, trabalho ou uso diário.',
+  },
+  {
+    nome: 'Suporte para Headset',
+    descricao: 'Suporte funcional para organizar headset, fones e acessórios.',
+  },
+  {
+    nome: 'Peças Personalizadas',
+    descricao: 'Produtos feitos sob encomenda conforme a ideia ou necessidade do cliente.',
+  },
 ];
 
 const beneficios = [
@@ -43,6 +62,11 @@ const etapas = [
 function App() {
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_TEXT)}`;
 
+  const produtoWhatsappUrl = (produto) =>
+    `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+      `Olá! Vim pelo site da Pixel's 3D e quero fazer um orçamento do produto: ${produto}.`
+    )}`;
+
   return (
     <main className="page">
       <section className="hero">
@@ -64,8 +88,9 @@ function App() {
               <a className="btn primary" href={whatsappUrl} target="_blank" rel="noreferrer">
                 Fazer orçamento agora <span>→</span>
               </a>
-              <a className="btn secondary" href="#produtos">
-                Ver possibilidades
+
+              <a className="btn secondary" href="#produtos-prontos">
+                Ver produtos prontos
               </a>
             </div>
 
@@ -116,6 +141,7 @@ function App() {
         </div>
       </section>
 
+      {/* BENEFÍCIOS */}
       <section className="section dark-section">
         <div className="container">
           <div className="section-heading">
@@ -135,6 +161,7 @@ function App() {
         </div>
       </section>
 
+      {/* O QUE FAZEMOS */}
       <section id="produtos" className="section light-section">
         <div className="container split">
           <div>
@@ -159,6 +186,37 @@ function App() {
         </div>
       </section>
 
+      {/* PRODUTOS PRONTOS */}
+      <section id="produtos-prontos" className="section dark-section">
+        <div className="container">
+          <div className="section-heading">
+            <span>Produtos prontos</span>
+            <h2>Produtos que já temos criados na Pixel&apos;s 3D.</h2>
+          </div>
+
+          <div className="cards four">
+            {produtosCriados.map((produto) => (
+              <article className="benefit-card" key={produto.nome}>
+                <div className="icon">🧩</div>
+                <h3>{produto.nome}</h3>
+                <p>{produto.descricao}</p>
+
+                <a
+                  className="btn primary"
+                  href={produtoWhatsappUrl(produto.nome)}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{ marginTop: '20px', width: '100%', textAlign: 'center' }}
+                >
+                  Pedir produto <span>→</span>
+                </a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* COMO FUNCIONA */}
       <section className="section dark-section">
         <div className="container">
           <div className="section-heading center">
@@ -177,6 +235,7 @@ function App() {
         </div>
       </section>
 
+      {/* CHAMADA FINAL */}
       <section className="section cta-section">
         <div className="container">
           <div className="cta-box">
