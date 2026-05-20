@@ -9,9 +9,8 @@ const produtos = [
   'Suporte para celular',
   'Porta canetas',
   'Organizadores',
-  'Peças sob encomenda',
-  'Peças personalizadas',
   'Brindes e protótipos',
+  'Peças personalizadas',
 ];
 
 const produtosCriados = [
