@@ -16,28 +16,22 @@ const produtosCriados = [
     nome: 'Porta Canetas',
     descricao:
       'Organizador de mesa feito em impressão 3D, ideal para canetas, lápis e pequenos acessórios.',
-    imagens: [
-      '/produtos/Porta-canetas1.png.jpeg',
-      '/produtos/Porta-canetas2.png.jpeg',
-      '/produtos/Porta-canetas3.png.jpeg',
-      '/produtos/Porta-canetas4.png.jpeg',
-      '/produtos/Porta-canetas5.png.jpeg',
-    ],
+    imagem: '/produtos/Porta-canetas1.png.jpeg',
   },
   {
     nome: 'Suporte para Celular',
     descricao: 'Suporte prático para mesa, estudo, trabalho ou uso diário.',
-    imagens: [],
+    imagem: '',
   },
   {
     nome: 'Suporte para Headset',
     descricao: 'Suporte funcional para organizar headset, fones e acessórios.',
-    imagens: [],
+    imagem: '',
   },
   {
     nome: 'Peças Personalizadas',
     descricao: 'Produtos feitos sob encomenda conforme a ideia ou necessidade do cliente.',
-    imagens: [],
+    imagem: '',
   },
 ];
 
@@ -158,7 +152,6 @@ function App() {
         </div>
       </section>
 
-      {/* BENEFÍCIOS */}
       <section className="section dark-section">
         <div className="container">
           <div className="section-heading">
@@ -178,7 +171,6 @@ function App() {
         </div>
       </section>
 
-      {/* O QUE FAZEMOS */}
       <section id="produtos" className="section light-section">
         <div className="container split">
           <div>
@@ -205,7 +197,6 @@ function App() {
         </div>
       </section>
 
-      {/* MODELOS DISPONÍVEIS */}
       <section id="produtos-prontos" className="section dark-section">
         <div className="container">
           <div className="section-heading">
@@ -213,23 +204,11 @@ function App() {
             <h2>Produtos que já temos criados na Pixel&apos;s 3D.</h2>
           </div>
 
-          <div className="cards four">
+          <div className="cards produtos-modelos">
             {produtosCriados.map((produto) => (
               <article className="benefit-card produto-card-detalhado" key={produto.nome}>
-                {produto.imagens && produto.imagens.length > 0 ? (
-                  <div className="produto-galeria">
-                    <img
-                      className="produto-img"
-                      src={produto.imagens[0]}
-                      alt={produto.nome}
-                    />
-
-                    <div className="produto-miniaturas">
-                      {produto.imagens.slice(1, 4).map((imagem) => (
-                        <img key={imagem} src={imagem} alt={produto.nome} />
-                      ))}
-                    </div>
-                  </div>
+                {produto.imagem ? (
+                  <img className="produto-img" src={produto.imagem} alt={produto.nome} />
                 ) : (
                   <div className="icon">🧩</div>
                 )}
@@ -238,11 +217,10 @@ function App() {
                 <p>{produto.descricao}</p>
 
                 <a
-                  className="btn primary"
+                  className="btn primary produto-btn"
                   href={produtoWhatsappUrl(produto.nome)}
                   target="_blank"
                   rel="noreferrer"
-                  style={{ marginTop: '20px', width: '100%', textAlign: 'center' }}
                 >
                   Pedir produto <span>→</span>
                 </a>
@@ -252,7 +230,6 @@ function App() {
         </div>
       </section>
 
-      {/* COMO FUNCIONA */}
       <section className="section dark-section">
         <div className="container">
           <div className="section-heading center">
@@ -271,7 +248,6 @@ function App() {
         </div>
       </section>
 
-      {/* CHAMADA FINAL */}
       <section className="section cta-section">
         <div className="container">
           <div className="cta-box">
