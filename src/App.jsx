@@ -1,4 +1,7 @@
+import { useState } from 'react';
+
 const WHATSAPP_NUMBER = '5547992805184';
+
 const WHATSAPP_TEXT =
   "Olá! Vim pelo site da Pixel's 3D e quero fazer um orçamento de impressão 3D.";
 
@@ -16,22 +19,28 @@ const produtosCriados = [
     nome: 'Porta Canetas',
     descricao:
       'Organizador de mesa feito em impressão 3D, ideal para canetas, lápis e pequenos acessórios.',
-    imagem: '/produtos/Porta-canetas1.png.jpeg',
+    imagens: [
+      '/produtos/Porta-canetas1.png.jpeg',
+      '/produtos/Porta-canetas2.png.jpeg',
+      '/produtos/Porta-canetas3.png.jpeg',
+      '/produtos/Porta-canetas4.png.jpeg',
+      '/produtos/Porta-canetas5.png.jpeg',
+    ],
   },
   {
     nome: 'Suporte para Celular',
     descricao: 'Suporte prático para mesa, estudo, trabalho ou uso diário.',
-    imagem: '',
+    imagens: [],
   },
   {
     nome: 'Suporte para Headset',
     descricao: 'Suporte funcional para organizar headset, fones e acessórios.',
-    imagem: '',
+    imagens: [],
   },
   {
     nome: 'Peças Personalizadas',
     descricao: 'Produtos feitos sob encomenda conforme a ideia ou necessidade do cliente.',
-    imagem: '',
+    imagens: [],
   },
 ];
 
@@ -39,31 +48,107 @@ const beneficios = [
   {
     icon: '✨',
     title: 'Design personalizado',
-    text: 'Transformamos sua ideia em uma peça real, funcional e com acabamento profissional.',
+    text: 'Transformamos sua ideia em uma peça real, funcional e bem acabada.',
   },
   {
     icon: '⚡',
     title: 'Produção ágil',
-    text: 'Atendimento direto para tirar sua ideia do papel e iniciar o orçamento com rapidez.',
+    text: 'Atendimento direto para tirar sua ideia do papel com rapidez.',
   },
   {
     icon: '🛡️',
     title: 'Peças resistentes',
-    text: 'Impressão em PLA com foco em qualidade, utilidade e boa apresentação.',
+    text: 'Impressão em PLA com foco em qualidade, utilidade e apresentação.',
   },
   {
     icon: '🚚',
     title: 'Envio para o Brasil',
-    text: 'Produzimos peças para clientes de diferentes regiões, com atendimento pelo WhatsApp.',
+    text: 'Produzimos peças para clientes de diferentes regiões.',
   },
 ];
 
 const etapas = [
   'Você chama no WhatsApp',
   'Envia sua ideia ou referência',
-  'Fazemos o orçamento',
-  'Produzimos sua peça em 3D',
+  'Recebe o orçamento',
+  'Produzimos sua peça',
 ];
+
+function ProdutoCard({ produto, produtoWhatsappUrl }) {
+  const [imagemAtual, setImagemAtual] = useState(0);
+
+  const imagens = produto.imagens || [];
+  const temImagem = imagens.length > 0;
+  const temMaisDeUmaImagem = imagens.length > 1;
+
+  const imagemAnterior = () => {
+    setImagemAtual((atual) => (atual === 0 ? imagens.length - 1 : atual - 1));
+  };
+
+  const proximaImagem = () => {
+    setImagemAtual((atual) => (atual === imagens.length - 1 ? 0 : atual + 1));
+  };
+
+  return (
+    <article className="catalog-card">
+      {temImagem ? (
+        <div className="product-carousel">
+          <img className="product-image" src={imagens[imagemAtual]} alt={produto.nome} />
+
+          {temMaisDeUmaImagem && (
+            <>
+              <button
+                className="carousel-arrow left"
+                type="button"
+                onClick={imagemAnterior}
+                aria-label="Imagem anterior"
+              >
+                ‹
+              </button>
+
+              <button
+                className="carousel-arrow right"
+                type="button"
+                onClick={proximaImagem}
+                aria-label="Próxima imagem"
+              >
+                ›
+              </button>
+
+              <div className="carousel-indicators">
+                {imagens.map((imagem, index) => (
+                  <button
+                    key={imagem}
+                    type="button"
+                    className={index === imagemAtual ? 'indicator active' : 'indicator'}
+                    onClick={() => setImagemAtual(index)}
+                    aria-label={`Ver imagem ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+      ) : (
+        <div className="product-placeholder">3D</div>
+      )}
+
+      <div className="catalog-info">
+        <h3>{produto.nome}</h3>
+        <p>{produto.descricao}</p>
+
+        <a
+          className="button button-light full"
+          href={produtoWhatsappUrl(produto.nome)}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Pedir produto
+        </a>
+      </div>
+    </article>
+  );
+}
 
 function App() {
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
@@ -78,91 +163,54 @@ function App() {
   return (
     <main className="page">
       <section className="hero">
-        <div className="grid-bg" />
-        <div className="hero-blur hero-blur-one" />
-        <div className="hero-blur hero-blur-two" />
+        <div className="container hero-grid">
+          <div className="hero-text">
+            <span className="tag">Pixel&apos;s 3D • Impressão 3D</span>
 
-        <div className="container hero-content">
-          <div className="hero-text fade-up">
-            <div className="badge">
-              🖨️ Pixel&apos;s 3D • Impressão 3D sob encomenda
-            </div>
+            <h1>Transformamos sua ideia em peça real.</h1>
 
-            <h1>Pixel&apos;s 3D transforma sua ideia em peça real.</h1>
-
-            <p className="subtitle">
+            <p>
               Criamos peças impressas em 3D para organização, decoração, suporte,
-              protótipos e soluções personalizadas para o seu dia a dia.
+              protótipos e soluções personalizadas para o dia a dia.
             </p>
 
             <div className="hero-actions">
-              <a className="btn primary" href={whatsappUrl} target="_blank" rel="noreferrer">
-                Fazer orçamento agora <span>→</span>
+              <a className="button button-light" href={whatsappUrl} target="_blank" rel="noreferrer">
+                Fazer orçamento
               </a>
 
-              <a className="btn secondary" href="#produtos-prontos">
-                Ver modelos disponíveis
+              <a className="button button-dark" href="#modelos">
+                Ver modelos
               </a>
-            </div>
-
-            <div className="stats">
-              <div>
-                <strong>3D</strong>
-                <span>Produção personalizada</span>
-              </div>
-              <div>
-                <strong>PLA</strong>
-                <span>Material versátil</span>
-              </div>
-              <div>
-                <strong>BR</strong>
-                <span>Atendimento nacional</span>
-              </div>
             </div>
           </div>
 
-          <div className="hero-card fade-up delay">
-            <div className="order-card">
-              <div className="order-top">
-                <div>
-                  <span>Pedido em produção</span>
-                  <h2>Peça personalizada</h2>
-                </div>
-                <div className="cube-icon">▣</div>
+          <div className="hero-preview">
+            <div className="preview-card">
+              <span>Pedido em produção</span>
+              <strong>Peça personalizada</strong>
+
+              <div className="preview-object">
+                <div>3D</div>
               </div>
 
-              <div className="piece-preview">
-                <div className="floating-cube">
-                  <div className="cube-inner">3D</div>
-                </div>
-              </div>
-
-              <div className="mini-grid">
-                <div>
-                  <span>Status</span>
-                  <strong>Orçamento aberto</strong>
-                </div>
-                <div>
-                  <span>Canal</span>
-                  <strong>WhatsApp</strong>
-                </div>
-              </div>
+              <small>Orçamento direto pelo WhatsApp</small>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="section dark-section">
+      <section className="section">
         <div className="container">
-          <div className="section-heading">
+          <div className="section-title">
             <span>Por que pedir com a gente?</span>
             <h2>Peças úteis, personalizadas e feitas para resolver problemas reais.</h2>
           </div>
 
-          <div className="cards four">
+          <div className="grid four">
             {beneficios.map((item) => (
-              <article className="benefit-card" key={item.title}>
-                <div className="icon">{item.icon}</div>
+              <article className="minimal-card" key={item.title}>
+                <div className="card-icon">{item.icon}</div>
                 <h3>{item.title}</h3>
                 <p>{item.text}</p>
               </article>
@@ -171,24 +219,25 @@ function App() {
         </div>
       </section>
 
-      <section id="produtos" className="section light-section">
+      <section className="section section-light" id="produtos">
         <div className="container split">
           <div>
-            <span className="label-dark">O que podemos fazer</span>
+            <span className="label">O que podemos fazer</span>
             <h2>De modelos disponíveis a peças sob medida.</h2>
             <p>
               Atendemos pedidos personalizados para quem precisa de uma peça específica,
               um suporte diferente, um organizador funcional ou um protótipo para testar
               uma ideia.
             </p>
-            <a className="btn black" href={whatsappUrl} target="_blank" rel="noreferrer">
-              Enviar minha ideia 💬
+
+            <a className="button button-black" href={whatsappUrl} target="_blank" rel="noreferrer">
+              Enviar minha ideia
             </a>
           </div>
 
-          <div className="product-grid">
+          <div className="service-grid">
             {produtos.map((produto) => (
-              <div className="product-card" key={produto}>
+              <div className="service-card" key={produto}>
                 <span>✓</span>
                 <strong>{produto}</strong>
               </div>
@@ -197,47 +246,33 @@ function App() {
         </div>
       </section>
 
-      <section id="produtos-prontos" className="section dark-section">
+      <section className="section" id="modelos">
         <div className="container">
-          <div className="section-heading">
+          <div className="section-title">
             <span>Modelos disponíveis</span>
             <h2>Produtos que já temos criados na Pixel&apos;s 3D.</h2>
           </div>
 
-          <div className="cards produtos-modelos">
+          <div className="catalog-grid">
             {produtosCriados.map((produto) => (
-              <article className="benefit-card produto-card-detalhado" key={produto.nome}>
-                {produto.imagem ? (
-                  <img className="produto-img" src={produto.imagem} alt={produto.nome} />
-                ) : (
-                  <div className="icon">🧩</div>
-                )}
-
-                <h3>{produto.nome}</h3>
-                <p>{produto.descricao}</p>
-
-                <a
-                  className="btn primary produto-btn"
-                  href={produtoWhatsappUrl(produto.nome)}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Pedir produto <span>→</span>
-                </a>
-              </article>
+              <ProdutoCard
+                key={produto.nome}
+                produto={produto}
+                produtoWhatsappUrl={produtoWhatsappUrl}
+              />
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section dark-section">
+      <section className="section">
         <div className="container">
-          <div className="section-heading center">
+          <div className="section-title center">
             <span>Como funciona</span>
             <h2>Seu pedido do WhatsApp até a peça pronta.</h2>
           </div>
 
-          <div className="cards four">
+          <div className="grid four">
             {etapas.map((etapa, index) => (
               <article className="step-card" key={etapa}>
                 <span>0{index + 1}</span>
@@ -248,7 +283,7 @@ function App() {
         </div>
       </section>
 
-      <section className="section cta-section">
+      <section className="section cta">
         <div className="container">
           <div className="cta-box">
             <h2>Tem uma ideia? A gente imprime.</h2>
@@ -256,8 +291,9 @@ function App() {
               Chame no WhatsApp, envie uma foto, desenho ou referência e receba um
               orçamento para transformar sua ideia em produto.
             </p>
-            <a className="btn primary" href={whatsappUrl} target="_blank" rel="noreferrer">
-              Pedir orçamento <span>→</span>
+
+            <a className="button button-light" href={whatsappUrl} target="_blank" rel="noreferrer">
+              Pedir orçamento
             </a>
           </div>
         </div>
